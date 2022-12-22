@@ -47,9 +47,8 @@ export default (editor) => {
     }
 
     comps.addType('dropdown', {
-        model: defaultModel.extend({
+        model: {
             defaults: {
-                ...defaultModel.prototype.defaults,
                 'custom-name': 'Dropdown',
                 classes: ['dropdown'],
                 droppable: 'a, button, .dropdown-menu',
@@ -59,11 +58,11 @@ export default (editor) => {
                         label: 'Initial state',
                         name: 'initial_state',
                         options: [
-                            {value: '', name: 'Closed'},
-                            {value: 'show', name: 'Open'}
+                            { value: '', name: 'Closed' },
+                            { value: 'show', name: 'Open' }
                         ],
                     }
-                ].concat(defaultModel.prototype.defaults.traits),
+                ]
             },
 
             init2() {
@@ -77,7 +76,7 @@ export default (editor) => {
                     type: 'dropdown_menu'
                 };
                 const menu_comp = this.append(menu)[0];
-                this.setupToggle(null, null, {force: true});
+                this.setupToggle(null, null, { force: true });
                 const comps = this.components();
                 comps.bind('add', this.setupToggle.bind(this));
                 comps.bind('remove', this.setupToggle.bind(this));
@@ -116,7 +115,7 @@ export default (editor) => {
                         toggle_attrs['aria-haspopup'] = true;
                     }
 
-                    toggle.set('attributes', toggle_attrs, {ignore: true});
+                    toggle.set('attributes', toggle_attrs, { ignore: true });
 
                     // setup menu
                     // toggle needs ID for aria-labelled on the menu, could alert here
@@ -125,17 +124,17 @@ export default (editor) => {
                     } else {
                         delete menu_attrs['aria-labelledby'];
                     }
-                    menu.set('attributes', menu_attrs, {ignore: true});
+                    menu.set('attributes', menu_attrs, { ignore: true });
                 }
             },
 
             updated(property, value) {
-                if(value.hasOwnProperty('initial_state')) {
+                if (value.hasOwnProperty('initial_state')) {
                     const menu = this.components().filter(c => c.getAttributes().class.split(' ').includes('dropdown-menu'))[0];
                     const attrs = menu.getAttributes();
                     const classes = attrs.class.split(' ');
 
-                    if(classes.includes('show')) {
+                    if (classes.includes('show')) {
                         // Close the menu
                         attrs['aria-expanded'] = false;
                         menu.removeClass('show');
@@ -147,26 +146,25 @@ export default (editor) => {
                 }
             },
 
-        }, {
-            isComponent(el) {
-                if (el && el.classList && el.classList.contains('dropdown')) {
-                    return {type: 'dropdown'};
-                }
+        },
+        isComponent(el) {
+            if (el && el.classList && el.classList.contains('dropdown')) {
+                return { type: 'dropdown' };
             }
-        }),
+        },
         view: defaultView
     });
 
     // need aria-labelledby to equal dropdown-toggle id
     // need to insert dropdown-item class on links when added
     comps.addType('dropdown_menu', {
-        model: defaultModel.extend({
-            defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        model: {
+            defaults: {
                 'custom-name': 'Dropdown Menu',
                 classes: ['dropdown-menu'],
                 draggable: '.dropdown',
                 droppable: true
-            }),
+            },
             init2() {
                 const header = {
                     type: 'header',
@@ -188,13 +186,12 @@ export default (editor) => {
                 this.append(divider);
                 this.append(link);
             }
-        }, {
-            isComponent(el) {
-                if (el && el.classList && el.classList.contains('dropdown-menu')) {
-                    return {type: 'dropdown_menu'};
-                }
+        },
+        isComponent(el) {
+            if (el && el.classList && el.classList.contains('dropdown-menu')) {
+                return { type: 'dropdown_menu' };
             }
-        }),
+        },
         view: defaultView,
     });
 

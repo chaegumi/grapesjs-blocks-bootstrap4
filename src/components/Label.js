@@ -17,20 +17,18 @@ export default (dc, traits, config = {}) => {
     const textView = textType.view;
 
     dc.addType('label', {
-        model: textModel.extend({
+        model: {
             defaults: {
-                ...textModel.prototype.defaults,
                 'custom-name': config.labels.label,
                 tagName: 'label',
                 traits: [traits.for],
             },
-        }, {
-            isComponent(el) {
-                if(el.tagName == 'LABEL'){
-                    return {type: 'label'};
-                }
-            },
-        }),
+        },
+        isComponent(el) {
+            if (el.tagName == 'LABEL') {
+                return { type: 'label' };
+            }
+        },
         view: textView,
     });
 }

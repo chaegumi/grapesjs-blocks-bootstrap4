@@ -21,8 +21,9 @@ export default (domComponent) => {
     const type = 'bs-image';
 
     domComponent.addType(type, {
-        model: model.extend({
-            defaults: Object.assign({}, model.prototype.defaults, {
+        extend: 'image',
+        model: {
+            defaults: {
                 'custom-name': 'Image',
                 tagName: 'img',
                 resizable: 1,
@@ -41,15 +42,14 @@ export default (domComponent) => {
                         label: 'Alternate text',
                         name: 'alt'
                     }
-                ].concat(model.prototype.defaults.traits)
-            })
-        }, {
-            isComponent: function(el) {
-                if(el && el.tagName === 'IMG') {
-                    return {type: type};
-                }
+                ]
             }
-        }),
+        },
+        isComponent: function (el) {
+            if (el && el.tagName === 'IMG') {
+                return { type: type };
+            }
+        },
         view: view
     });
 }

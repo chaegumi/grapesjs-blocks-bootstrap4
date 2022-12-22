@@ -8,7 +8,7 @@ export const TextBlock = (bm, label) => {
         `,
         category: 'Typography',
         content: {
-            type:'text',
+            type: 'text',
             content: 'Insert your text here'
         }
     });
@@ -21,20 +21,14 @@ export default (domc) => {
     const textView = textType.view;
 
     domc.addType('text', {
-        model: defaultModel.extend({
-            defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        model: {
+            defaults: {
                 'custom-name': 'Text',
                 tagName: 'div',
                 droppable: true,
                 editable: true
-            })
-        }, {
-            /*isComponent(el) {
-              if(el && el.dataset && el.dataset.bsText) {
-                return {type: 'text'};
-              }
-            }*/
-        }),
+            }
+        },
         view: textView
     });
 }

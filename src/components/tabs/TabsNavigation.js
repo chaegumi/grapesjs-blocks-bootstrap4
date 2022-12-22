@@ -62,9 +62,8 @@ export default (dc, config = {}) => {
 
     dc.addType(type, {
 
-        model: defaultModel.extend({
+        model: {
             defaults: {
-                ...defaultModel.prototype.defaults,
                 name: 'Tabs Navigation',
                 copyable: 0,
                 draggable: true,
@@ -74,17 +73,17 @@ export default (dc, config = {}) => {
                     {
                         type: 'class_select',
                         options: [
-                            {value: 'nav-tabs', name: 'Tabs'},
-                            {value: 'nav-pills', name: 'Pills'},
+                            { value: 'nav-tabs', name: 'Tabs' },
+                            { value: 'nav-pills', name: 'Pills' },
                         ],
                         label: 'Type',
                     },
                     {
                         type: 'class_select',
                         options: [
-                            {value: '', name: 'Left'},
-                            {value: 'nav-fill', name: 'Fill'},
-                            {value: 'nav-justified', name: 'Justify'},
+                            { value: '', name: 'Left' },
+                            { value: 'nav-fill', name: 'Fill' },
+                            { value: 'nav-justified', name: 'Justify' },
                         ],
                         label: 'Layout',
                     },
@@ -94,13 +93,12 @@ export default (dc, config = {}) => {
             init() {
                 this.get('classes').pluck('name').indexOf(classId) < 0 && this.addClass(classId);
             }
-        }, {
-            isComponent(el) {
-                if (elHasClass(el, classId)) return { type };
-            },
-        }),
+        },
+        isComponent(el) {
+            if (elHasClass(el, classId)) return { type };
+        },
 
-        view: defaultView.extend({
+        view: {
             init() {
                 const props = [
                     'type',
@@ -127,6 +125,6 @@ export default (dc, config = {}) => {
                     `);
                 }
             },
-        }),
+        },
     });
 }

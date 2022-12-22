@@ -20,8 +20,8 @@ export default (domc) => {
     const defaultView = defaultType.view;
 
     domc.addType('row', {
-        model: defaultModel.extend({
-            defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        model: {
+            defaults: {
                 'custom-name': 'Row',
                 tagName: 'div',
                 draggable: '.container, .container-fluid',
@@ -30,20 +30,19 @@ export default (domc) => {
                     {
                         type: 'class_select',
                         options: [
-                            {value: '', name: 'Yes'},
-                            {value: 'no-gutters', name: 'No'}
+                            { value: '', name: 'Yes' },
+                            { value: 'no-gutters', name: 'No' }
                         ],
                         label: 'Gutters?'
                     }
-                ].concat(defaultModel.prototype.defaults.traits)
-            })
-        }, {
-            isComponent(el) {
-                if(el && el.classList && el.classList.contains('row')) {
-                    return {type: 'row'};
-                }
+                ]
             }
-        }),
+        },
+        isComponent(el) {
+            if (el && el.classList && el.classList.contains('row')) {
+                return { type: 'row' };
+            }
+        },
         view: defaultView
     });
 }

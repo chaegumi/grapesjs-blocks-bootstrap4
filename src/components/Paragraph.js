@@ -20,28 +20,28 @@ export default (domc) => {
     const textView = textType.view;
 
     domc.addType('paragraph', {
-        model: textModel.extend({
-            defaults: Object.assign({}, textModel.prototype.defaults, {
+        extend: 'text',
+        model: {
+            defaults: {
                 'custom-name': 'Paragraph',
                 tagName: 'p',
                 traits: [
                     {
                         type: 'class_select',
                         options: [
-                            {value: '', name: 'No'},
-                            {value: 'lead', name: 'Yes'}
+                            { value: '', name: 'No' },
+                            { value: 'lead', name: 'Yes' }
                         ],
                         label: 'Lead?'
                     }
-                ].concat(textModel.prototype.defaults.traits)
-            })
-        }, {
-            isComponent(el) {
-                if(el && el.tagName && el.tagName === 'P') {
-                    return {type: 'paragraph'};
-                }
+                ]
             }
-        }),
+        },
+        isComponent(el) {
+            if (el && el.tagName && el.tagName === 'P') {
+                return { type: 'paragraph' };
+            }
+        },
         view: textView
     });
 }

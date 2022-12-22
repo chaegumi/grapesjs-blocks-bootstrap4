@@ -6,8 +6,8 @@ export default (domComponent) => {
     const type = 'bs-video';
 
     domComponent.addType(type, {
-        model: model.extend({
-            defaults: Object.assign({}, model.prototype.defaults, {
+        model: {
+            defaults: {
                 'custom-name': 'Embed',
                 tagName: 'div',
                 resizable: false,
@@ -17,23 +17,22 @@ export default (domComponent) => {
                     {
                         type: 'class_select',
                         options: [
-                            {value: 'embed-responsive-21by9', name: '21:9'},
-                            {value: 'embed-responsive-16by9', name: '16:9'},
-                            {value: 'embed-responsive-4by3', name: '4:3'},
-                            {value: 'embed-responsive-1by1', name: '1:1'},
+                            { value: 'embed-responsive-21by9', name: '21:9' },
+                            { value: 'embed-responsive-16by9', name: '16:9' },
+                            { value: 'embed-responsive-4by3', name: '4:3' },
+                            { value: 'embed-responsive-1by1', name: '1:1' },
                         ],
                         label: 'Aspect Ratio',
                     },
-                ].concat(model.prototype.defaults.traits)
-            })
-        }, {
-            isComponent: function(el) {
-                if(el && el.className === 'embed-responsive') {
-                    return {type: type};
-                }
+                ]
             }
-        }),
-        view: view.extend({
+        },
+        isComponent: function (el) {
+            if (el && el.className === 'embed-responsive') {
+                return { type: type };
+            }
+        },
+        view: {
             init() {
                 const props = [
                     'Aspect Ratio',
@@ -46,6 +45,6 @@ export default (domComponent) => {
                     comps.add(`<iframe class="embed-responsive-item" src="${src_default}"></iframe>`);
                 }
             },
-        }),
+        },
     });
 }

@@ -28,8 +28,8 @@ export default (editor) => {
     const linkView = linkType.view;
 
     comps.addType('link', {
-        model: textModel.extend({
-            defaults: Object.assign({}, textModel.prototype.defaults, {
+        model: {
+            defaults: {
                 'custom-name': 'Link',
                 tagName: 'a',
                 droppable: true,
@@ -44,8 +44,8 @@ export default (editor) => {
                     {
                         type: 'select',
                         options: [
-                            {value: '', name: 'This window'},
-                            {value: '_blank', name: 'New window'}
+                            { value: '', name: 'This window' },
+                            { value: '_blank', name: 'New window' }
                         ],
                         label: 'Target',
                         name: 'target',
@@ -53,17 +53,17 @@ export default (editor) => {
                     {
                         type: 'select',
                         options: [
-                            {value: '', name: 'None'},
-                            {value: 'button', name: 'Self'},
-                            {value: 'collapse', name: 'Collapse'},
-                            {value: 'dropdown', name: 'Dropdown'}
+                            { value: '', name: 'None' },
+                            { value: 'button', name: 'Self' },
+                            { value: 'collapse', name: 'Collapse' },
+                            { value: 'dropdown', name: 'Dropdown' }
                         ],
                         label: 'Toggles',
                         name: 'data-toggle',
                         changeProp: 1
                     }
-                ].concat(textModel.prototype.defaults.traits)
-            }),
+                ]
+            },
             init2() {
                 //textModel.prototype.init.call(this);
                 this.listenTo(this, 'change:data-toggle', this.setupToggle);
@@ -112,7 +112,7 @@ export default (editor) => {
                         }
                     }
                 }
-                this.set('attributes', attrs, {ignore: true});
+                this.set('attributes', attrs, { ignore: true });
             },
             classesChanged(e) {
                 console.log('classes changed');
@@ -124,13 +124,12 @@ export default (editor) => {
                     }
                 }
             }
-        }, {
-            isComponent(el) {
-                if (el && el.tagName && el.tagName === 'A') {
-                    return {type: 'link'};
-                }
+        },
+        isComponent(el) {
+            if (el && el.tagName && el.tagName === 'A') {
+                return { type: 'link' };
             }
-        }),
+        },
         view: linkView
     });
 

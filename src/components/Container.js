@@ -20,8 +20,8 @@ export default (domc) => {
     const defaultView = defaultType.view;
 
     domc.addType('container', {
-        model: defaultModel.extend({
-            defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        model: {
+            defaults: {
                 'custom-name': 'Container',
                 tagName: 'div',
                 droppable: true,
@@ -29,20 +29,19 @@ export default (domc) => {
                     {
                         type: 'class_select',
                         options: [
-                            {value: 'container', name: 'Fixed'},
-                            {value: 'container-fluid', name: 'Fluid'}
+                            { value: 'container', name: 'Fixed' },
+                            { value: 'container-fluid', name: 'Fluid' }
                         ],
                         label: 'Width'
                     }
-                ].concat(defaultModel.prototype.defaults.traits)
-            })
-        }, {
-            isComponent(el) {
-                if(el && el.classList && (el.classList.contains('container') || el.classList.contains('container-fluid'))) {
-                    return {type: 'container'};
-                }
+                ]
             }
-        }),
+        },
+        isComponent(el) {
+            if (el && el.classList && (el.classList.contains('container') || el.classList.contains('container-fluid'))) {
+                return { type: 'container' };
+            }
+        },
         view: defaultView
     });
 }

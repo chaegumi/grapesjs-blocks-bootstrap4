@@ -20,8 +20,8 @@ export default (editor) => {
   const defaultView = defaultType.view;
 
   comps.addType('collapse', {
-    model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+    model: {
+      defaults: {
         'custom-name': 'Dropdown',
         classes: ['collapse'],
         droppable: true,
@@ -29,13 +29,13 @@ export default (editor) => {
           {
             type: 'class_select',
             options: [
-              {value: '', name: 'Closed'},
-              {value: 'show', name: 'Open'}
+              { value: '', name: 'Closed' },
+              { value: 'show', name: 'Open' }
             ],
             label: 'Initial state'
           }
-        ].concat(defaultModel.prototype.defaults.traits)
-      }),
+        ]
+      },
       /*init2() {
         window.asdf = this;
         const toggle = {
@@ -107,18 +107,17 @@ export default (editor) => {
           menu.set('attributes', menu_attrs, {ignore: true});
         }
       }*/
-    }, {
-      isComponent(el) {
-        if(el && el.classList && el.classList.contains('dropdown')) {
-          return {type: 'dropdown'};
-        }
+    },
+    isComponent(el) {
+      if (el && el.classList && el.classList.contains('dropdown')) {
+        return { type: 'dropdown' };
       }
-    }),
-    view: defaultView.extend({
+    },
+    view: {
       /*init() {
         this.model.setupToggle
       }*/
-    })
+    }
   });
 
 }

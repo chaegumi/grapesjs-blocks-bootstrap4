@@ -18,9 +18,9 @@ export default (dc, traits, config = {}) => {
 
     // TEXTAREA
     dc.addType('textarea', {
-        model: inputModel.extend({
+        extend: 'input',
+        model: {
             defaults: {
-                ...inputModel.prototype.defaults,
                 'custom-name': config.labels.textarea,
                 tagName: 'textarea',
                 traits: [
@@ -29,13 +29,12 @@ export default (dc, traits, config = {}) => {
                     traits.required
                 ]
             },
-        }, {
-            isComponent(el) {
-                if(el.tagName === 'TEXTAREA'){
-                    return {type: 'textarea'};
-                }
-            },
-        }),
+        },
+        isComponent(el) {
+            if (el.tagName === 'TEXTAREA') {
+                return { type: 'textarea' };
+            }
+        },
         view: defaultView,
     });
 }
