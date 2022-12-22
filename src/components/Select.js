@@ -20,7 +20,7 @@ export default (editor, dc, traits, config = {}) => {
     const inputModel = inputType.model;
 
     const preventDefaultClick = () => {
-        return {
+        return defaultType.view.extend({
             events: {
                 'mousedown': 'handleClick',
             },
@@ -28,14 +28,14 @@ export default (editor, dc, traits, config = {}) => {
             handleClick(e) {
                 e.preventDefault();
             },
-        };
+        });
     };
 
     // SELECT
     dc.addType('select', {
-        extend: 'input',
         model: {
             defaults: {
+                ...inputModel.prototype.defaults,
                 'custom-name': config.labels.select,
                 tagName: 'select',
                 traits: [

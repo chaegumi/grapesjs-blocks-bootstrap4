@@ -22,7 +22,7 @@ export default (dc) => {
 
     dc.addType('button_group', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Button Group',
                 tagName: 'div',
                 classes: ['btn-group'],
@@ -53,8 +53,8 @@ export default (dc) => {
                         name: 'aria-label',
                         placeholder: 'A group of buttons'
                     }
-                ]
-            }
+                ].concat(defaultModel.prototype.defaults.traits)
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('btn-group')) {

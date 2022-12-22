@@ -49,6 +49,7 @@ export default (editor) => {
     comps.addType('dropdown', {
         model: {
             defaults: {
+                ...defaultModel.prototype.defaults,
                 'custom-name': 'Dropdown',
                 classes: ['dropdown'],
                 droppable: 'a, button, .dropdown-menu',
@@ -62,7 +63,7 @@ export default (editor) => {
                             { value: 'show', name: 'Open' }
                         ],
                     }
-                ]
+                ].concat(defaultModel.prototype.defaults.traits),
             },
 
             init2() {
@@ -159,12 +160,12 @@ export default (editor) => {
     // need to insert dropdown-item class on links when added
     comps.addType('dropdown_menu', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Dropdown Menu',
                 classes: ['dropdown-menu'],
                 draggable: '.dropdown',
                 droppable: true
-            },
+            }),
             init2() {
                 const header = {
                     type: 'header',

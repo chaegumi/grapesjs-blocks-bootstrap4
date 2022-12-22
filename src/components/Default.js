@@ -9,7 +9,7 @@ export default (domc) => {
 
     domc.addType('default', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 tagName: 'div',
                 traits: [
                     {
@@ -75,8 +75,8 @@ export default (domc) => {
                         name: 'title',
                         placeholder: 'My Element'
                     }
-                ]
-            },
+                ] //.concat(defaultModel.prototype.defaults.traits)
+            }),
             init() {
                 const classes = this.get('classes');
                 classes.bind('add', this.classesChanged.bind(this));

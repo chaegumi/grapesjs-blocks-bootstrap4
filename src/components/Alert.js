@@ -24,7 +24,7 @@ export default (domc) => {
     domc.addType('alert', {
         extend: 'text',
         model: {
-            defaults: {
+            defaults: Object.assign({}, textModel.prototype.defaults, {
                 'custom-name': 'Alert',
                 tagName: 'div',
                 classes: ['alert'],
@@ -37,8 +37,8 @@ export default (domc) => {
                         ],
                         label: 'Context'
                     }
-                ]
-            }
+                ].concat(textModel.prototype.defaults.traits)
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('alert')) {

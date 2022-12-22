@@ -19,6 +19,7 @@ export default (dc) => {
     dc.addType('button', {
         model: {
             defaults: {
+                ...defaultModel.prototype.defaults,
                 'custom-name': 'Button',
                 droppable: false,
                 attributes: {
@@ -65,7 +66,7 @@ export default (dc) => {
                         ],
                         label: 'Width'
                     }
-                ]
+                ].concat(defaultModel.prototype.defaults.traits)
             },
             afterChange(e) {
                 if (this.attributes.type === 'button') {

@@ -14,6 +14,7 @@ export default (dc, config = {}) => {
 
     model: {
       defaults: {
+        ...defaultModel.prototype.defaults,
         name: 'Tab',
         tagName: 'li',
         copyable: true,

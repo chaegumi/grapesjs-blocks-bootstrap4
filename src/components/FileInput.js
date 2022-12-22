@@ -21,6 +21,7 @@ export default (dc, traits, config = {}) => {
     dc.addType(type, {
         model: {
             defaults: {
+                ...defaultModel.prototype.defaults,
                 'custom-name': config.labels.input,
                 tagName: 'input',
                 draggable: 'form .form-group',

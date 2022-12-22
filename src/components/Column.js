@@ -22,7 +22,7 @@ export default (domc, editor) => {
 
     domc.addType('column', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Column',
                 draggable: '.row',
                 droppable: true,
@@ -218,8 +218,8 @@ export default (domc, editor) => {
                         ],
                         label: 'XL Offset',
                     },
-                ]
-            },
+                ].concat(defaultModel.prototype.defaults.traits)
+            }),
         },
         isComponent(el) {
             let match = false;

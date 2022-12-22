@@ -23,7 +23,7 @@ export default (domComponent) => {
     domComponent.addType(type, {
         extend: 'image',
         model: {
-            defaults: {
+            defaults: Object.assign({}, model.prototype.defaults, {
                 'custom-name': 'Image',
                 tagName: 'img',
                 resizable: 1,
@@ -42,8 +42,8 @@ export default (domComponent) => {
                         label: 'Alternate text',
                         name: 'alt'
                     }
-                ]
-            }
+                ].concat(model.prototype.defaults.traits)
+            })
         },
         isComponent: function (el) {
             if (el && el.tagName === 'IMG') {

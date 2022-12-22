@@ -22,12 +22,12 @@ export default (domc) => {
 
     domc.addType('text', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Text',
                 tagName: 'div',
                 droppable: true,
                 editable: true
-            }
+            })
         },
         view: textView
     });

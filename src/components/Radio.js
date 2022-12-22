@@ -26,6 +26,7 @@ export default (dc, traits, config = {}) => {
         extend: 'checkbox',
         model: {
             defaults: {
+                ...checkType.model.prototype.defaults,
                 'custom-name': config.labels.radio,
                 attributes: { type: 'radio' },
             },

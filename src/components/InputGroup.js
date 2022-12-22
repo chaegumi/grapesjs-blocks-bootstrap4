@@ -42,6 +42,7 @@ export default (dc, traits, config = {}) => {
   dc.addType('input_group', {
     model: {
       defaults: {
+        ...defaultModel.prototype.defaults,
         'custom-name': config.labels.input_group,
         tagName: 'div',
         traits: [],

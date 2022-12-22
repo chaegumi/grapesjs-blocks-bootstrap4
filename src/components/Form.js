@@ -63,6 +63,7 @@ export default (dc, traits, config = {}) => {
     dc.addType('form', {
         model: {
             defaults: {
+                ...defaultModel.prototype.defaults,
                 droppable: ':not(form)',
                 draggable: ':not(form)',
                 traits: [

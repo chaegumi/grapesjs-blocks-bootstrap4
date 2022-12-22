@@ -22,7 +22,7 @@ export default (domc) => {
     domc.addType('paragraph', {
         extend: 'text',
         model: {
-            defaults: {
+            defaults: Object.assign({}, textModel.prototype.defaults, {
                 'custom-name': 'Paragraph',
                 tagName: 'p',
                 traits: [
@@ -34,8 +34,8 @@ export default (domc) => {
                         ],
                         label: 'Lead?'
                     }
-                ]
-            }
+                ].concat(textModel.prototype.defaults.traits)
+            })
         },
         isComponent(el) {
             if (el && el.tagName && el.tagName === 'P') {

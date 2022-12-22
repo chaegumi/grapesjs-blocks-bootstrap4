@@ -24,7 +24,7 @@ export default (domc) => {
     domc.addType('badge', {
         extend: 'text',
         model: {
-            defaults: {
+            defaults: Object.assign({}, textModel.prototype.defaults, {
                 'custom-name': 'Badge',
                 tagName: 'span',
                 classes: ['badge'],
@@ -45,8 +45,8 @@ export default (domc) => {
                         ],
                         label: 'Shape'
                     }
-                ]
-            }
+                ].concat(textModel.prototype.defaults.traits)
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('badge')) {

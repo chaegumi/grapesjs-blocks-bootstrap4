@@ -16,7 +16,7 @@ export default (domc) => {
 
     domc.addType('list', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'List',
                 tagName: 'ul',
                 resizable: 1,
@@ -31,8 +31,8 @@ export default (domc) => {
                         name: 'tagName',
                         changeProp: 1
                     }
-                ]
-            }
+                ].concat(defaultModel.prototype.defaults.traits)
+            })
         },
         isComponent: function (el) {
             if (el && ['UL', 'OL'].includes(el.tagName)) {

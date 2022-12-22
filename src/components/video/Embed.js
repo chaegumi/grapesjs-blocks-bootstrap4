@@ -7,7 +7,7 @@ export default (domComponent) => {
 
     domComponent.addType(type, {
         model: {
-            defaults: {
+            defaults: Object.assign({}, model.prototype.defaults, {
                 'custom-name': 'Embed',
                 tagName: 'div',
                 resizable: false,
@@ -24,8 +24,8 @@ export default (domComponent) => {
                         ],
                         label: 'Aspect Ratio',
                     },
-                ]
-            }
+                ].concat(model.prototype.defaults.traits)
+            })
         },
         isComponent: function (el) {
             if (el && el.className === 'embed-responsive') {

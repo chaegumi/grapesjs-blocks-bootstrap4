@@ -28,6 +28,7 @@ export default (dc, traits, config = {}) => {
     dc.addType('checkbox', {
         model: {
             defaults: {
+                ...inputModel.prototype.defaults,
                 'custom-name': config.labels.checkbox_name,
                 copyable: false,
                 droppable: false,

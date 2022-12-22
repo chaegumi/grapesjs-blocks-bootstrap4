@@ -17,8 +17,10 @@ export default (dc, traits, config = {}) => {
     const textView = textType.view;
 
     dc.addType('label', {
+        extend: 'text',
         model: {
             defaults: {
+                ...textModel.prototype.defaults,
                 'custom-name': config.labels.label,
                 tagName: 'label',
                 traits: [traits.for],

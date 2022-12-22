@@ -21,7 +21,7 @@ export default (editor) => {
 
   comps.addType('collapse', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Dropdown',
         classes: ['collapse'],
         droppable: true,
@@ -34,8 +34,8 @@ export default (editor) => {
             ],
             label: 'Initial state'
           }
-        ]
-      },
+        ].concat(defaultModel.prototype.defaults.traits)
+      }),
       /*init2() {
         window.asdf = this;
         const toggle = {

@@ -22,7 +22,7 @@ export default (domc) => {
     domc.addType('header', {
         extend: 'text',
         model: {
-            defaults: {
+            defaults: Object.assign({}, textModel.prototype.defaults, {
                 'custom-name': 'Header',
                 tagName: 'h1',
                 traits: [
@@ -51,8 +51,8 @@ export default (domc) => {
                         ],
                         label: 'Display Heading'
                     }
-                ]
-            },
+                ].concat(textModel.prototype.defaults.traits)
+            }),
 
         },
         isComponent(el) {

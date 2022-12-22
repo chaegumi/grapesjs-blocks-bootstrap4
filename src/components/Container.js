@@ -21,7 +21,7 @@ export default (domc) => {
 
     domc.addType('container', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Container',
                 tagName: 'div',
                 droppable: true,
@@ -34,8 +34,8 @@ export default (domc) => {
                         ],
                         label: 'Width'
                     }
-                ]
-            }
+                ].concat(defaultModel.prototype.defaults.traits)
+            })
         },
         isComponent(el) {
             if (el && el.classList && (el.classList.contains('container') || el.classList.contains('container-fluid'))) {

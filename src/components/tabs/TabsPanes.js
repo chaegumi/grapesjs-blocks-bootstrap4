@@ -13,6 +13,7 @@ export default (dc, config = {}) => {
 
         model: {
             defaults: {
+                ...defaultModel.prototype.defaults,
                 name: 'Tabs Panes',
                 copyable: 0,
                 draggable: true,
@@ -26,6 +27,7 @@ export default (dc, config = {}) => {
         isComponent(el) {
             if (elHasClass(el, classId)) return { type };
         },
+
         view: {
             init() {
                 const comps = this.model.components();

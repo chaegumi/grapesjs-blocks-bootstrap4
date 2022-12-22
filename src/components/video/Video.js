@@ -20,8 +20,9 @@ export default (domComponent) => {
     const type = 'bs-embed-responsive';
 
     domComponent.addType(type, {
+        extend: 'video',
         model: {
-            defaults: {
+            defaults: Object.assign({}, model.prototype.defaults, {
                 'custom-name': 'Video',
                 resizable: false,
                 droppable: false,
@@ -29,7 +30,7 @@ export default (domComponent) => {
                 copyable: false,
                 provider: 'so',
                 classes: ['embed-responsive-item'],
-            }
+            })
         },
         isComponent: function (el) {
             if (el && el.className === 'embed-responsive-item') {

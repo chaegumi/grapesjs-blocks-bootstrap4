@@ -34,7 +34,7 @@ export default (domc, editor) => {
 
   domc.addType('card', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Card',
         classes: ['card'],
         traits: [
@@ -80,8 +80,8 @@ export default (domc, editor) => {
             name: 'card-img-bottom',
             changeProp: 1
           }
-        ]
-      },
+        ].concat(defaultModel.prototype.defaults.traits)
+      }),
       init2() {
         this.listenTo(this, 'change:card-img-top', this.cardImageTop);
         this.listenTo(this, 'change:card-header', this.cardHeader);
@@ -181,19 +181,18 @@ export default (domc, editor) => {
       if (el && el.classList && el.classList.contains('card')) {
         return { type: 'card' };
       }
-    }
-    ,
+    },
     view: defaultView
   });
 
   domc.addType('card_image_top', {
     extend: 'image',
     model: {
-      defaults: {
+      defaults: Object.assign({}, imageModel.prototype.defaults, {
         'custom-name': 'Card Image Top',
         classes: ['card-img-top'],
         'card-order': 1
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-img-top')) {
@@ -205,11 +204,11 @@ export default (domc, editor) => {
 
   domc.addType('card_header', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Card Header',
         classes: ['card-header'],
         'card-order': 2
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-header')) {
@@ -222,11 +221,11 @@ export default (domc, editor) => {
   domc.addType('card_image', {
     extend: 'image',
     model: {
-      defaults: {
+      defaults: Object.assign({}, imageModel.prototype.defaults, {
         'custom-name': 'Card Image',
         classes: ['card-img'],
         'card-order': 3
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-img')) {
@@ -238,11 +237,11 @@ export default (domc, editor) => {
 
   domc.addType('card_image_overlay', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Card Image Overlay',
         classes: ['card-img-overlay'],
         'card-order': 4
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-img-overlay')) {
@@ -254,11 +253,11 @@ export default (domc, editor) => {
 
   domc.addType('card_body', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Card Body',
         classes: ['card-body'],
         'card-order': 5
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-body')) {
@@ -270,11 +269,11 @@ export default (domc, editor) => {
 
   domc.addType('card_footer', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Card Footer',
         classes: ['card-footer'],
         'card-order': 6
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-footer')) {
@@ -287,11 +286,11 @@ export default (domc, editor) => {
   domc.addType('card_image_bottom', {
     extend: 'image',
     model: {
-      defaults: {
+      defaults: Object.assign({}, imageModel.prototype.defaults, {
         'custom-name': 'Card Image Bottom',
         classes: ['card-img-bottom'],
         'card-order': 7
-      }
+      })
     },
     isComponent(el) {
       if (el && el.classList && el.classList.contains('card-img-bottom')) {
@@ -303,7 +302,7 @@ export default (domc, editor) => {
 
   domc.addType('card_container', {
     model: {
-      defaults: {
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Card Container',
         classes: ['card-group'],
         droppable: '.card',
@@ -317,8 +316,8 @@ export default (domc, editor) => {
             ],
             label: 'Layout',
           }
-        ]
-      }
+        ].concat(defaultModel.prototype.defaults.traits)
+      })
     },
     isComponent(el) {
       const css = Array.from(el.classList || []);

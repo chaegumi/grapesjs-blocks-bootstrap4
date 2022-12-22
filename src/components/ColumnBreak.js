@@ -20,11 +20,11 @@ export default (domc) => {
 
     domc.addType('column_break', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Column Break',
                 tagName: 'div',
                 classes: ['w-100']
-            }
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('w-100')) { // also check if parent is `.row`

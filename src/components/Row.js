@@ -21,7 +21,7 @@ export default (domc) => {
 
     domc.addType('row', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Row',
                 tagName: 'div',
                 draggable: '.container, .container-fluid',
@@ -35,8 +35,8 @@ export default (domc) => {
                         ],
                         label: 'Gutters?'
                     }
-                ]
-            }
+                ].concat(defaultModel.prototype.defaults.traits)
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('row')) {

@@ -24,11 +24,11 @@ export default (domc) => {
 
     domc.addType('media_object', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Media Object',
                 tagName: 'div',
                 classes: ['media']
-            }
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('media')) {
@@ -40,11 +40,11 @@ export default (domc) => {
 
     domc.addType('media_body', {
         model: {
-            defaults: {
+            defaults: Object.assign({}, defaultModel.prototype.defaults, {
                 'custom-name': 'Media Body',
                 tagName: 'div',
                 classes: ['media-body']
-            }
+            })
         },
         isComponent(el) {
             if (el && el.classList && el.classList.contains('media-body')) {

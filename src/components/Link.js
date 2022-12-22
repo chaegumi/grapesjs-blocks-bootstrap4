@@ -28,8 +28,9 @@ export default (editor) => {
     const linkView = linkType.view;
 
     comps.addType('link', {
+        extend: 'text',
         model: {
-            defaults: {
+            defaults: Object.assign({}, textModel.prototype.defaults, {
                 'custom-name': 'Link',
                 tagName: 'a',
                 droppable: true,
@@ -62,8 +63,8 @@ export default (editor) => {
                         name: 'data-toggle',
                         changeProp: 1
                     }
-                ]
-            },
+                ].concat(textModel.prototype.defaults.traits)
+            }),
             init2() {
                 //textModel.prototype.init.call(this);
                 this.listenTo(this, 'change:data-toggle', this.setupToggle);

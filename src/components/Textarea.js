@@ -21,6 +21,7 @@ export default (dc, traits, config = {}) => {
         extend: 'input',
         model: {
             defaults: {
+                ...inputModel.prototype.defaults,
                 'custom-name': config.labels.textarea,
                 tagName: 'textarea',
                 traits: [

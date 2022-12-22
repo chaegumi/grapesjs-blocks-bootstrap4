@@ -64,6 +64,7 @@ export default (dc, config = {}) => {
 
         model: {
             defaults: {
+                ...defaultModel.prototype.defaults,
                 name: 'Tabs Navigation',
                 copyable: 0,
                 draggable: true,
